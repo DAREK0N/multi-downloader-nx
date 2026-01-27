@@ -42,6 +42,21 @@ impl Webhook {
     }
 
     /// Get default message templates
+    /// 
+    /// Available template variables:
+    /// - `{{title}}` - Content title
+    /// - `{{series}}` - Series name
+    /// - `{{episode}}` - Episode number
+    /// - `{{season}}` - Season number
+    /// - `{{quality}}` - Video quality
+    /// - `{{size}}` - File size
+    /// - `{{duration}}` - Download duration
+    /// - `{{speed}}` - Average download speed
+    /// - `{{timestamp}}` - Completion timestamp
+    /// - `{{status}}` - Download status
+    /// - `{{error}}` - Error message (if failed)
+    /// - `{{thumbnail}}` - Content thumbnail URL
+    /// - `{{source}}` - Download source/service
     pub fn default_templates() -> HashMap<WebhookTrigger, String> {
         let mut templates = HashMap::new();
         
