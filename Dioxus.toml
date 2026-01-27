@@ -1,0 +1,12 @@
+[application]
+name = "multi-downloader-nx"
+
+[web]
+app_title = "Multi-Downloader NX"
+
+[serve]
+port = 8080
+
+[build]
+# Include assets directory
+asset_dir = "assets"
