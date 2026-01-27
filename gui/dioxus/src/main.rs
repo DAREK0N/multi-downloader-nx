@@ -26,8 +26,9 @@ fn App() -> Element {
 	let lang = use_signal(|| LangContext { lang: Lang::En });
 
 	rsx! {
-		LocaleProvider { lang: lang() }
-		Container { lang: lang }
+		LocaleProvider { lang: lang(), 
+			Container { lang: lang }
+		}
 	}
 }
 
@@ -39,7 +40,8 @@ fn LocaleProvider(lang: LangContext, children: Element) -> Element {
 
 #[component]
 fn Container(lang: Signal<LangContext>) -> Element {
-	let t = |key: &str| translate(&lang().lang, key);
+	let current_lang = lang().lang;
+	let t = |key: &str| translate(&current_lang, key);
 
 	rsx! {
 		div {
