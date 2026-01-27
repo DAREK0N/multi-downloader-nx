@@ -60,9 +60,8 @@ AniDL --service {ServiceName} -s {SeasonID} -e {EpisodeNumber}
 
 Dependencies that are only required for running from code. These are not required if you are using the prebuilt binaries.
 
-* NodeJS >= 18.0.0 (https://nodejs.org/)
-* NPM >= 6.9.0 (https://www.npmjs.org/)
-* PNPM >= 7.0.0 (https://pnpm.io/)
+* NodeJS >= 22 (https://nodejs.org/) — required for the current toolchain
+* PNPM >= 10 (https://pnpm.io/) — used for both root and GUI packages
 
 ### Build Setup
 
@@ -91,6 +90,43 @@ Then you can cd into the `lib` folder and you will be able to run the CLI or GUI
 
 * CLI: `node ./index.js --help`
 * GUI: `node ./gui.js`
+
+### Dev environment (quick start)
+
+From the repo root:
+
+1) Install deps (skip postinstall scripts in CI if needed):
+
+```bash
+pnpm install
+pnpm -C gui/react install
+```
+
+2) Start the GUI dev server (React, hot reload):
+
+```bash
+pnpm -C gui/react start
+# Opens http://localhost:8080 (frontend) proxied to backend at http://localhost:3000
+```
+
+3) Start the backend (express + websocket) in another terminal:
+
+```bash
+pnpm run tsc
+node gui.js
+# GUI server defaults to cfg.gui.port (check config/gui.yml), typically 3000
+```
+
+4) Dioxus (experimental web UI scaffold):
+
+```bash
+cd gui/dioxus
+cargo build
+```
+
+Notes:
+- Ensure ffmpeg and mkvmerge are available in PATH if you exercise downloads.
+- Node 22+ and pnpm 10+ are required to match package engines.
 
 ### Build the application into an executable
 
