@@ -1,0 +1,34 @@
+app:
+  name: "Multi-Downloader NX"
+  description: "Download anime van Crunchyroll, Hidive en AnimationDigitalNetwork"
+
+nav:
+  home: "Home"
+  downloads: "Downloads"
+  scheduled: "Gepland"
+  webhooks: "Webhooks"
+  settings: "Instellingen"
+
+downloads:
+  title: "Downloads"
+  active: "Actieve Downloads"
+  queue: "Downloadwachtrij"
+  completed: "Voltooid"
+  failed: "Mislukt"
+  
+scheduled:
+  title: "Geplande Downloads"
+  create: "Schema Maken"
+  next_run: "Volgende Uitvoering"
+  
+settings:
+  title: "Instellingen"
+  general: "Algemeen"
+  theme: "Thema"
+  language: "Taal"
+  download_path: "Downloadpad"
+  
+webhooks:
+  title: "Discord Webhooks"
+  add: "Webhook Toevoegen"
+  configure: "Configureren"

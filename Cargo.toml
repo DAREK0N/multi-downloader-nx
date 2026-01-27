@@ -50,3 +50,8 @@ uuid = { version = "1", features = ["v4", "serde"] }
 opt-level = 3
 lto = true
 codegen-units = 1
+
+# rust-i18n configuration
+[package.metadata.i18n]
+available-locales = ["en", "de", "es", "fr", "it", "pt", "pt-BR", "ru", "zh-CN", "zh-TW", "ja", "ko", "pl", "nl", "tr", "ar"]
+default-locale = "en"

@@ -1,0 +1,34 @@
+app:
+  name: "Multi-Downloader NX"
+  description: "Crunchyroll、Hidive、AnimationDigitalNetworkからアニメをダウンロード"
+
+nav:
+  home: "ホーム"
+  downloads: "ダウンロード"
+  scheduled: "スケジュール"
+  webhooks: "ウェブフック"
+  settings: "設定"
+
+downloads:
+  title: "ダウンロード"
+  active: "アクティブなダウンロード"
+  queue: "ダウンロードキュー"
+  completed: "完了"
+  failed: "失敗"
+  
+scheduled:
+  title: "スケジュールダウンロード"
+  create: "スケジュールを作成"
+  next_run: "次回実行"
+  
+settings:
+  title: "設定"
+  general: "一般"
+  theme: "テーマ"
+  language: "言語"
+  download_path: "ダウンロードパス"
+  
+webhooks:
+  title: "Discord ウェブフック"
+  add: "ウェブフックを追加"
+  configure: "設定"

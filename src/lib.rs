@@ -2,6 +2,9 @@
 //! 
 //! A Dioxus fullstack application for downloading anime from various streaming services.
 
+// Initialize rust-i18n
+rust_i18n::i18n!("locales", fallback = "en");
+
 pub mod components;
 pub mod models;
 pub mod pages;

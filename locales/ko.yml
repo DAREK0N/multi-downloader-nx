@@ -1,0 +1,34 @@
+app:
+  name: "Multi-Downloader NX"
+  description: "Crunchyroll, Hidive 및 AnimationDigitalNetwork에서 애니메이션 다운로드"
+
+nav:
+  home: "홈"
+  downloads: "다운로드"
+  scheduled: "예약됨"
+  webhooks: "웹훅"
+  settings: "설정"
+
+downloads:
+  title: "다운로드"
+  active: "활성 다운로드"
+  queue: "다운로드 대기열"
+  completed: "완료됨"
+  failed: "실패함"
+  
+scheduled:
+  title: "예약된 다운로드"
+  create: "일정 만들기"
+  next_run: "다음 실행"
+  
+settings:
+  title: "설정"
+  general: "일반"
+  theme: "테마"
+  language: "언어"
+  download_path: "다운로드 경로"
+  
+webhooks:
+  title: "Discord 웹훅"
+  add: "웹훅 추가"
+  configure: "구성"

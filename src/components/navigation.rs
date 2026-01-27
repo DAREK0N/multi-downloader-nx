@@ -1,5 +1,6 @@
 use dioxus::prelude::*;
 use crate::router::Route;
+use crate::components::{theme_switcher::ThemeSwitcher, language_selector::LanguageSelector};
 
 /// Navigation component
 #[component]
@@ -20,7 +21,7 @@ pub fn Navigation() -> Element {
                     }
                     
                     // Desktop navigation
-                    div { class: "hidden md:flex space-x-4",
+                    div { class: "hidden md:flex items-center space-x-4",
                         Link { 
                             to: Route::Home {},
                             class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md",
@@ -46,11 +47,17 @@ pub fn Navigation() -> Element {
                             class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md",
                             "Settings"
                         }
+                        
+                        // Theme and Language Selectors
+                        div { class: "flex items-center space-x-2 ml-4",
+                            ThemeSwitcher {}
+                            LanguageSelector {}
+                        }
                     }
                     
                     // Mobile menu button
                     button {
-                        class: "md:hidden text-gray-700 dark:text-gray-300",
+                        class: "md:hidden text-gray-700 dark:text-gray-300 text-2xl",
                         onclick: move |_| show_mobile_menu.set(!show_mobile_menu()),
                         "☰"
                     }
@@ -89,6 +96,12 @@ pub fn Navigation() -> Element {
                                 class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md",
                                 onclick: move |_| show_mobile_menu.set(false),
                                 "Settings"
+                            }
+                            
+                            // Mobile theme and language selectors
+                            div { class: "flex flex-col space-y-2 pt-2 border-t border-gray-300 dark:border-gray-600",
+                                ThemeSwitcher {}
+                                LanguageSelector {}
                             }
                         }
                     }

@@ -1,0 +1,34 @@
+app:
+  name: "Multi-Downloader NX"
+  description: "Crunchyroll, Hidive ve AnimationDigitalNetwork'ten anime indirin"
+
+nav:
+  home: "Ana Sayfa"
+  downloads: "İndirmeler"
+  scheduled: "Zamanlanmış"
+  webhooks: "Web Kancaları"
+  settings: "Ayarlar"
+
+downloads:
+  title: "İndirmeler"
+  active: "Aktif İndirmeler"
+  queue: "İndirme Kuyruğu"
+  completed: "Tamamlandı"
+  failed: "Başarısız"
+  
+scheduled:
+  title: "Zamanlanmış İndirmeler"
+  create: "Program Oluştur"
+  next_run: "Sonraki Çalıştırma"
+  
+settings:
+  title: "Ayarlar"
+  general: "Genel"
+  theme: "Tema"
+  language: "Dil"
+  download_path: "İndirme Yolu"
+  
+webhooks:
+  title: "Discord Web Kancaları"
+  add: "Web Kancası Ekle"
+  configure: "Yapılandır"
