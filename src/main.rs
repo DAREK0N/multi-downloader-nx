@@ -1,5 +1,3 @@
-use dioxus::prelude::*;
-
 mod app;
 mod components;
 mod models;
@@ -17,12 +15,5 @@ fn main() {
         .init();
 
     // Launch the Dioxus application
-    #[cfg(feature = "web")]
     dioxus::launch(app::App);
-
-    #[cfg(not(feature = "web"))]
-    {
-        // Server-side launch
-        dioxus::launch(app::App);
-    }
 }

@@ -11,7 +11,7 @@ pub fn App() -> Element {
 
     rsx! {
         // Global styles
-        document::Stylesheet { href: asset!("/assets/styles/tailwind.css") }
+        document::Stylesheet { href: asset!("assets/styles/tailwind.css") }
         
         // Router
         Router::<Route> {}
