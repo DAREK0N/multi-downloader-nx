@@ -8,9 +8,9 @@ license = "MIT"
 repository = "https://github.com/anidl/multi-downloader-nx"
 
 [dependencies]
-# Dioxus Core
-dioxus = { version = "0.7.1", features = ["fullstack", "router"] }
-dioxus-ssr = "0.7.1"
+# Dioxus Core - using 0.7.3 (latest stable)
+dioxus = { version = "0.7", features = ["fullstack", "router"] }
+dioxus-ssr = "0.7"
 
 # Async Runtime
 tokio = { version = "1", features = ["full"] }
