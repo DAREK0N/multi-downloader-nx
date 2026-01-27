@@ -1,9 +1,0 @@
-/home/runner/work/multi-downloader-nx/multi-downloader-nx/gui/dioxus/target/debug/deps/dioxus_core_macro-ad8753211a0c3be6.d: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/component.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/props/mod.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/utils.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/../README.md
-
-/home/runner/work/multi-downloader-nx/multi-downloader-nx/gui/dioxus/target/debug/deps/libdioxus_core_macro-ad8753211a0c3be6.so: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/component.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/props/mod.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/utils.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/../README.md
-
-/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/lib.rs:
-/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/component.rs:
-/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/props/mod.rs:
-/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/utils.rs:
-/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dioxus-core-macro-0.5.6/src/../README.md:

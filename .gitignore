@@ -31,6 +31,7 @@ fonts
 out/
 dist/
 gui/react/build/
+gui/dioxus/target/
 docker-compose.yml
 crunchyendpoints
 .vscode
