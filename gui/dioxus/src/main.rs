@@ -34,16 +34,12 @@ fn App() -> Element {
 #[component]
 fn LocaleProvider(lang: LangContext, children: Element) -> Element {
 	use_context_provider(|| lang);
-	children
+	rsx! { {children} }
 }
 
 #[component]
 fn Container(lang: Signal<LangContext>) -> Element {
-	let current = lang().lang;
-
-	let t = |key: &str| translate(&current, key);
-
-	let mut lang_signal = lang;
+	let t = |key: &str| translate(&lang().lang, key);
 
 	rsx! {
 		div {
@@ -53,11 +49,11 @@ fn Container(lang: Signal<LangContext>) -> Element {
 				h1 { style: "margin: 0; font-size: 1.6rem;", "{t(\"title\")}" }
 				div {
 					style: "display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;",
-					button { onclick: move |_| lang_signal.write().lang = Lang::En, "EN" }
-					button { onclick: move |_| lang_signal.write().lang = Lang::De, "DE" }
-					button { onclick: move |_| lang_signal.write().lang = Lang::Es, "ES" }
-					button { onclick: move |_| lang_signal.write().lang = Lang::Fr, "FR" }
-					button { onclick: move |_| lang_signal.write().lang = Lang::Ja, "日本語" }
+					button { onclick: move |_| lang.write().lang = Lang::En, "EN" }
+					button { onclick: move |_| lang.write().lang = Lang::De, "DE" }
+					button { onclick: move |_| lang.write().lang = Lang::Es, "ES" }
+					button { onclick: move |_| lang.write().lang = Lang::Fr, "FR" }
+					button { onclick: move |_| lang.write().lang = Lang::Ja, "日本語" }
 				}
 			}
 			main {
