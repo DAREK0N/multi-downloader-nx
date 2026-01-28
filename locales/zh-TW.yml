@@ -1,0 +1,34 @@
+app:
+  name: "Multi-Downloader NX"
+  description: "從Crunchyroll、Hidive和AnimationDigitalNetwork下載動漫"
+
+nav:
+  home: "主頁"
+  downloads: "下載"
+  scheduled: "計劃"
+  webhooks: "網路鉤子"
+  settings: "設定"
+
+downloads:
+  title: "下載"
+  active: "活動下載"
+  queue: "下載佇列"
+  completed: "已完成"
+  failed: "失敗"
+  
+scheduled:
+  title: "計劃下載"
+  create: "創建計劃"
+  next_run: "下次運行"
+  
+settings:
+  title: "設定"
+  general: "常規"
+  theme: "主題"
+  language: "語言"
+  download_path: "下載路徑"
+  
+webhooks:
+  title: "Discord 網路鉤子"
+  add: "添加網路鉤子"
+  configure: "配置"

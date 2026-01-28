@@ -45,3 +45,13 @@ widevine/*
 !widevine/.gitkeep
 playready/*
 !playready/.gitkeep
+
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# Dioxus
+/dist/
+/.dx/

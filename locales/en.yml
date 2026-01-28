@@ -1,0 +1,34 @@
+app:
+  name: "Multi-Downloader NX"
+  description: "Download anime from Crunchyroll, Hidive, and AnimationDigitalNetwork"
+
+nav:
+  home: "Home"
+  downloads: "Downloads"
+  scheduled: "Scheduled"
+  webhooks: "Webhooks"
+  settings: "Settings"
+
+downloads:
+  title: "Downloads"
+  active: "Active Downloads"
+  queue: "Download Queue"
+  completed: "Completed"
+  failed: "Failed"
+  
+scheduled:
+  title: "Scheduled Downloads"
+  create: "Create Schedule"
+  next_run: "Next Run"
+  
+settings:
+  title: "Settings"
+  general: "General"
+  theme: "Theme"
+  language: "Language"
+  download_path: "Download Path"
+  
+webhooks:
+  title: "Discord Webhooks"
+  add: "Add Webhook"
+  configure: "Configure"

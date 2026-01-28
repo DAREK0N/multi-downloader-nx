@@ -1,0 +1,34 @@
+app:
+  name: "Multi-Downloader NX"
+  description: "تنزيل الأنمي من Crunchyroll و Hidive و AnimationDigitalNetwork"
+
+nav:
+  home: "الصفحة الرئيسية"
+  downloads: "التنزيلات"
+  scheduled: "المجدولة"
+  webhooks: "الويب هوك"
+  settings: "الإعدادات"
+
+downloads:
+  title: "التنزيلات"
+  active: "التنزيلات النشطة"
+  queue: "قائمة الانتظار"
+  completed: "مكتمل"
+  failed: "فشل"
+  
+scheduled:
+  title: "التنزيلات المجدولة"
+  create: "إنشاء جدول"
+  next_run: "التشغيل التالي"
+  
+settings:
+  title: "الإعدادات"
+  general: "عام"
+  theme: "المظهر"
+  language: "اللغة"
+  download_path: "مسار التنزيل"
+  
+webhooks:
+  title: "Discord ويب هوك"
+  add: "إضافة ويب هوك"
+  configure: "تكوين"

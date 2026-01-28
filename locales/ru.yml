@@ -1,0 +1,34 @@
+app:
+  name: "Multi-Downloader NX"
+  description: "Загрузка аниме с Crunchyroll, Hidive и AnimationDigitalNetwork"
+
+nav:
+  home: "Главная"
+  downloads: "Загрузки"
+  scheduled: "Запланировано"
+  webhooks: "Вебхуки"
+  settings: "Настройки"
+
+downloads:
+  title: "Загрузки"
+  active: "Активные Загрузки"
+  queue: "Очередь Загрузок"
+  completed: "Завершено"
+  failed: "Не Удалось"
+  
+scheduled:
+  title: "Запланированные Загрузки"
+  create: "Создать Расписание"
+  next_run: "Следующий Запуск"
+  
+settings:
+  title: "Настройки"
+  general: "Общие"
+  theme: "Тема"
+  language: "Язык"
+  download_path: "Путь Загрузки"
+  
+webhooks:
+  title: "Discord Вебхуки"
+  add: "Добавить Вебхук"
+  configure: "Настроить"
