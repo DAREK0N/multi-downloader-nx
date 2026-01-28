@@ -10,6 +10,8 @@ pub use echo::Echo;
 
 mod navigation;
 pub use navigation::NavBar;
+mod breadcrumbs;
+pub use breadcrumbs::Breadcrumbs;
 
 mod theme_switcher;
 pub use theme_switcher::ThemeSwitcher;

@@ -29,7 +29,10 @@ fn MainLayout() -> Element {
         div { class: "min-h-screen bg-background text-text-primary",
             crate::components::NavBar {}
 
-            main { class: "container mx-auto px-4 py-8", Outlet::<Route> {} }
+            main { class: "container mx-auto px-4 py-8 space-y-4",
+                crate::components::Breadcrumbs {}
+                Outlet::<Route> {}
+            }
         }
     }
 }
