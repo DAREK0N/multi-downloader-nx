@@ -15,6 +15,8 @@ pub use breadcrumbs::Breadcrumbs;
 
 mod theme_switcher;
 pub use theme_switcher::ThemeSwitcher;
+mod theme_preview;
+pub use theme_preview::ThemePreview;
 
 // Reusable UI components
 mod button;

@@ -66,10 +66,10 @@ pub fn ThemeSwitcher() -> Element {
 
             // Dropdown menu
             if show_dropdown() {
-                div { class: "absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-surface border border-border z-50",
-                    div { class: "py-1",
+                div { class: "absolute right-0 mt-2 w-72 rounded-md shadow-lg bg-surface border border-border z-50",
+                    div { class: "p-2 space-y-2",
                         for theme in Theme::all() {
-                            ThemeOption {
+                            ThemePreviewCard {
                                 theme,
                                 is_active: current_theme == theme,
                                 on_select: move |selected_theme| {
@@ -86,34 +86,29 @@ pub fn ThemeSwitcher() -> Element {
 }
 
 #[component]
-fn ThemeOption(
-    theme: Theme,
-    is_active: bool,
-    on_select: EventHandler<Theme>
-) -> Element {
+fn ThemePreviewCard(theme: Theme, is_active: bool, on_select: EventHandler<Theme>) -> Element {
     rsx! {
         button {
             r#type: "button",
-            class: "w-full text-left px-4 py-2 text-sm transition-colors",
-            class: if is_active { "bg-accent text-white" } else { "text-text-primary hover:bg-background" },
+            class: "w-full text-left p-3 rounded-md border transition-colors",
+            class: if is_active { "border-accent bg-accent/10" } else { "border-border hover:bg-background" },
             onclick: move |_| on_select.call(theme),
 
-            div { class: "flex items-center justify-between",
-                span { "{theme.display_name()}" }
+            div { class: "flex items-center justify-between mb-2",
+                span { class: "font-semibold", "{theme.display_name()}" }
                 if is_active {
-                    svg {
-                        class: "h-4 w-4",
-                        fill: "none",
-                        view_box: "0 0 24 24",
-                        stroke: "currentColor",
-                        path {
-                            stroke_linecap: "round",
-                            stroke_linejoin: "round",
-                            stroke_width: "2",
-                            d: "M5 13l4 4L19 7",
-                        }
-                    }
+                    span { class: "text-xs px-2 py-1 rounded bg-accent text-white", "Active" }
                 }
+            }
+
+            // Mini palette preview
+            div { class: "grid grid-cols-6 gap-1",
+                div { class: "h-3 rounded bg-primary" }
+                div { class: "h-3 rounded bg-surface" }
+                div { class: "h-3 rounded bg-accent" }
+                div { class: "h-3 rounded bg-text-primary" }
+                div { class: "h-3 rounded bg-text-muted" }
+                div { class: "h-3 rounded bg-border" }
             }
         }
     }
