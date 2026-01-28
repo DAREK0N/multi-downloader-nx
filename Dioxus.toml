@@ -1,21 +1,24 @@
 [application]
+name = "multi-downloader-nx"
+default_platform = "web"
 
 [web.app]
-
 # HTML title tag content
-title = "multi-downloader-nx"
+title = "Multi Downloader NX"
 
-# include `assets` in web platform
-[web.resource]
+# Base path for the application
+base_path = "/"
 
-# Additional CSS style files
-style = []
+[web.dev]
+# Development server port
+port = 8080
 
-# Additional JavaScript files
-script = []
+# Tailwind CSS configuration
+[web.watcher]
+watch_path = ["src", "assets"]
+reload_html = true
+index_on_404 = true
 
-[web.resource.dev]
-
-# Javascript code file
-# serve: [dev-server] only
-script = []
+# Proxy configuration for API calls
+[[web.proxy]]
+backend = "http://127.0.0.1:8080/api"

@@ -1,0 +1,584 @@
+# Multi-Downloader-NX Migration to Dioxus 0.7.3
+# ================================================
+# Priority: GUI → State → i18n → Discord → Scheduler → Server Logic
+
+## PHASE 1: PROJECT SETUP & FOUNDATION
+# ======================================
+
+### 1.1 Dependencies & Configuration
+- [X] Update Cargo.toml with all required dependencies (dioxus 0.7.3, fullstack, router)
+- [X] Add tokio with full features for async runtime
+- [X] Add serde and serde_json for serialization
+- [X] Add chrono for date/time handling
+- [X] Add uuid for unique identifiers
+- [X] Add thiserror for error handling
+- [X] Add tracing and tracing-subscriber for logging
+- [X] Configure Dioxus.toml for fullstack mode
+- [X] Set up Tailwind CSS in tailwind.css (Dioxus has built-in support)
+- [X] Add theme CSS variables to tailwind.css
+- [X] Create .gitignore entries for build artifacts
+
+### 1.2 Core Project Structure
+- [X] Create src/lib.rs for shared library code
+- [X] Create src/app.rs for root Dioxus component
+- [X] Create src/router.rs for application routing
+- [X] Create src/components/mod.rs directory structure
+- [X] Create src/pages/mod.rs directory structure
+- [X] Create src/server/mod.rs for server-side logic
+- [X] Create src/services/mod.rs for business logic
+- [X] Create src/models/mod.rs for data structures
+- [X] Create src/state/mod.rs for state management
+- [X] Create src/hooks/mod.rs for custom hooks
+
+
+## PHASE 2: DATA MODELS & STATE
+# ==============================
+
+### 2.1 Core Data Models
+- [X] Create models/download.rs - Download struct with fields (id, title, url, status, progress, etc.)
+- [X] Create models/queue.rs - QueueItem struct
+- [X] Create models/schedule.rs - ScheduledDownload struct
+- [X] Create models/webhook.rs - WebhookConfig struct
+- [X] Create models/settings.rs - AppSettings struct
+- [X] Create models/theme.rs - Theme and ThemeConfig structs
+- [X] Create models/service.rs - ServiceType enum (Crunchyroll, HIDIVE, ADN)
+- [X] Add serde derive macros to all models
+- [X] Implement PartialEq and Clone for all models
+- [X] Add validation methods to models
+
+### 2.2 Application State Management
+- [X] Create state/app_state.rs - Global application state
+- [X] Create state/theme_state.rs - Theme management state
+- [X] Create state/download_state.rs - Download queue state
+- [X] Create state/auth_state.rs - Authentication state per service
+- [X] Implement use_context_provider for global state
+- [X] Create state initialization functions
+- [X] Add state persistence helpers (localStorage/database)
+
+
+## PHASE 3: ROUTING & NAVIGATION
+# ===============================
+
+### 3.1 Route Definition
+- [X] Define Route enum in router.rs with all routes
+- [X] Add #[derive(Routable)] to Route enum
+- [X] Create Home route variant (#[route("/")])
+- [X] Create Downloads route variant (#[route("/downloads")])
+- [X] Create Scheduled route variant (#[route("/scheduled")])
+- [X] Create Settings route variant (#[route("/settings")])
+- [X] Create Webhooks route variant (#[route("/webhooks")])
+- [X] Add Layout wrapper with #[layout(MainLayout)]
+- [X] Configure Router component in app.rs
+
+### 3.2 Navigation Components
+- [X] Create components/navigation.rs - NavBar component
+- [X] Add navigation links with routing
+- [X] Implement mobile hamburger menu (responsive)
+- [X] Add active route highlighting
+- [ ] Create breadcrumb component (optional)
+
+
+## PHASE 4: THEMING & STYLING
+# ============================
+
+### 4.1 Theme System Setup
+- [X] Create hooks/use_theme.rs custom hook
+- [X] Implement light theme preset
+- [X] Implement dark theme preset
+- [X] Implement OLED black theme preset
+- [X] Implement Solarized Light theme
+- [X] Implement Solarized Dark theme
+- [X] Implement Dracula theme
+- [X] Create theme CSS custom properties generator
+- [X] Add system preference detection (prefers-color-scheme)
+
+### 4.2 Theme Switcher Component
+- [X] Create components/theme_switcher.rs
+- [X] Add theme dropdown/selector UI
+- [X] Implement theme preview functionality
+- [X] Add theme persistence to localStorage
+- [X] Ensure no flash on page load (SSR hydration)
+- [X] Test theme switching without page reload
+
+### 4.3 Tailwind Integration
+- [X] Configure Tailwind to use theme CSS variables
+- [X] Create base.css with theme variables
+- [X] Add responsive breakpoint classes
+- [X] Create utility component classes
+- [X] Test all responsive breakpoints (sm, md, lg, xl, 2xl)
+
+
+## PHASE 5: CORE UI COMPONENTS
+# =============================
+
+### 5.1 Reusable Components (from old/gui/react/src/components/reusable)
+- [ ] Create components/multi_select.rs - MultiSelect component
+- [X] Create components/progress_bar.rs - LinearProgressWithLabel equivalent
+- [ ] Create components/context_menu.rs - ContextMenu component
+- [X] Create components/button.rs - Reusable button variants
+- [X] Create components/input.rs - Text input component
+- [X] Create components/modal.rs - Modal/Dialog component
+- [X] Create components/card.rs - Card container component
+- [X] Create components/status_indicator.rs - Status badge component
+
+### 5.2 Download Components
+- [X] Create components/download_card.rs - Individual download item display
+- [X] Create components/download_list.rs - List of downloads
+- [X] Create components/download_progress.rs - Progress visualization
+- [X] Create components/download_actions.rs - Action buttons (pause, resume, cancel)
+- [X] Add thumbnail display support
+- [X] Add quality indicator
+- [X] Add file size display
+- [X] Add download speed indicator
+
+### 5.3 Queue Components
+- [ ] Create components/queue_manager.rs - Main queue interface
+- [ ] Create components/queue_item.rs - Individual queue entry
+- [ ] Implement drag-and-drop reordering
+- [ ] Add queue filtering options
+- [ ] Add queue sorting options
+- [ ] Create "Clear Queue" button functionality
+- [ ] Create "Start Queue" button functionality
+
+### 5.4 Scheduling Components
+- [ ] Create components/schedule_picker.rs - Date/time picker
+- [ ] Create components/calendar.rs - Calendar view component
+- [ ] Create components/time_picker.rs - Time selection
+- [ ] Create components/recurring_schedule.rs - Recurrence settings
+
+### 5.5 Complete Page UIs
+- [X] Enhance pages/home.rs - Dashboard with stats, quick actions, add download modal
+- [X] Enhance pages/downloads.rs - Download manager with filtering, search
+- [X] Enhance pages/scheduled.rs - Scheduled downloads with stats, add schedule modal
+- [X] Enhance pages/settings.rs - Theme switcher, download settings, service authentication
+- [X] Enhance pages/webhooks.rs - Discord webhook configuration with triggers
+- [ ] Create components/scheduled_list.rs - List of scheduled downloads
+- [ ] Add timezone support
+- [ ] Add countdown timer display
+
+
+## PHASE 6: PAGE COMPONENTS
+# ==========================
+
+### 6.1 Home Page (from old/gui/react/src/Layout.tsx)
+- [ ] Create pages/home.rs
+- [ ] Implement main dashboard layout
+- [ ] Add quick stats overview
+- [ ] Add recent downloads section
+- [ ] Add active downloads section
+- [ ] Ensure responsive layout
+
+### 6.2 Downloads Page (from MainFrame/DownloadManager)
+- [ ] Create pages/downloads.rs
+- [ ] Integrate download list component
+- [ ] Add search/filter functionality
+- [ ] Add pagination or infinite scroll
+- [ ] Add bulk actions (select multiple, delete, etc.)
+- [ ] Show download history
+
+### 6.3 Queue Page (from MainFrame/Queue)
+- [ ] Create pages/queue.rs
+- [ ] Integrate queue manager component
+- [ ] Add queue controls (start, pause, clear)
+- [ ] Add priority management
+- [ ] Show queue statistics
+
+### 6.4 Scheduled Downloads Page
+- [ ] Create pages/scheduled.rs
+- [ ] Integrate scheduled list component
+- [ ] Add "Add Schedule" button
+- [ ] Implement schedule creation modal
+- [ ] Add schedule editing functionality
+- [ ] Add schedule deletion with confirmation
+
+### 6.5 Settings Page
+- [ ] Create pages/settings.rs
+- [ ] Add theme settings section
+- [ ] Add language settings section
+- [ ] Add download path configuration
+- [ ] Add service authentication section
+- [ ] Add DRM status section
+- [ ] Add webhook configuration section
+- [ ] Add general preferences
+
+### 6.6 Webhooks Page
+- [ ] Create pages/webhooks.rs
+- [ ] Add webhook list display
+- [ ] Add "Add Webhook" button
+- [ ] Create webhook configuration form
+- [ ] Add template editor
+- [ ] Add template preview
+- [ ] Add test webhook button
+- [ ] Show webhook delivery history
+
+
+## PHASE 7: AUTHENTICATION COMPONENTS
+# ====================================
+
+### 7.1 Auth UI (from old/gui/react/src/components/AuthButton.tsx & LogoutButton.tsx)
+- [ ] Create components/auth_button.rs - Service-specific auth buttons
+- [ ] Create components/logout_button.rs - Logout functionality
+- [ ] Add auth status indicators per service
+- [ ] Create auth modal/dialog
+- [ ] Add credential input fields
+- [ ] Implement session persistence
+
+
+## PHASE 8: SERVER SETUP & STATE HANDLING
+# ========================================
+
+### 8.1 Server Configuration
+- [ ] Create server/mod.rs entry point
+- [ ] Set up Axum/Dioxus server
+- [ ] Configure static file serving
+- [ ] Set up SSR rendering
+- [ ] Configure API routes
+
+### 8.2 Database Setup
+- [ ] Choose database (SQLx with SQLite or Sled)
+- [ ] Add database dependency to Cargo.toml
+- [ ] Create database schema for downloads
+- [ ] Create database schema for schedules
+- [ ] Create database schema for webhooks
+- [ ] Create database schema for settings
+- [ ] Implement database migrations
+- [ ] Create database connection pool
+
+### 8.3 Server Functions (Dioxus #[post] and #[get])
+- [ ] Create server/api.rs for server functions
+- [ ] Implement get_downloads() server function
+- [ ] Implement add_to_queue() server function
+- [ ] Implement start_queue() server function
+- [ ] Implement clear_queue() server function
+- [ ] Implement pause_download() server function
+- [ ] Implement resume_download() server function
+- [ ] Implement cancel_download() server function
+- [ ] Implement get_schedules() server function
+- [ ] Implement add_schedule() server function
+- [ ] Implement update_schedule() server function
+- [ ] Implement delete_schedule() server function
+- [ ] Implement get_settings() server function
+- [ ] Implement update_settings() server function
+- [ ] Add proper error handling (ServerFnError)
+
+
+## PHASE 9: INTERNATIONALIZATION (rust-i18n)
+# ===========================================
+
+### 9.1 i18n Setup
+- [ ] Add rust-i18n dependency to Cargo.toml
+- [ ] Create locales/ directory structure
+- [ ] Configure rust-i18n in lib.rs
+- [ ] Set fallback locale to "en"
+
+### 9.2 Translation Files
+- [ ] Create locales/en.yml (English)
+- [ ] Create locales/de.yml (German)
+- [ ] Create locales/es.yml (Spanish)
+- [ ] Create locales/fr.yml (French)
+- [ ] Create locales/it.yml (Italian)
+- [ ] Create locales/pt.yml (Portuguese)
+- [ ] Create locales/pt-BR.yml (Brazilian Portuguese)
+- [ ] Create locales/ru.yml (Russian)
+- [ ] Create locales/zh-CN.yml (Simplified Chinese)
+- [ ] Create locales/zh-TW.yml (Traditional Chinese)
+- [ ] Create locales/ja.yml (Japanese)
+- [ ] Create locales/ko.yml (Korean)
+- [ ] Create locales/pl.yml (Polish)
+- [ ] Create locales/nl.yml (Dutch)
+- [ ] Create locales/tr.yml (Turkish)
+- [ ] Create locales/ar.yml (Arabic) with RTL support
+
+### 9.3 Translation Keys
+- [ ] Add UI component labels
+- [ ] Add button text
+- [ ] Add page titles
+- [ ] Add form labels
+- [ ] Add error messages
+- [ ] Add success messages
+- [ ] Add validation messages
+- [ ] Add tooltips and help text
+
+### 9.4 i18n Integration
+- [ ] Create hooks/use_i18n.rs custom hook
+- [ ] Create components/language_selector.rs
+- [ ] Implement browser language detection
+- [ ] Add language persistence
+- [ ] Implement dynamic language switching
+- [ ] Add RTL layout support for Arabic
+- [ ] Add pluralization support
+- [ ] Add date/number formatting per locale
+
+
+## PHASE 10: DISCORD WEBHOOK INTEGRATION
+# =======================================
+
+### 10.1 Webhook Configuration
+- [ ] Create services/discord_client.rs
+- [ ] Add reqwest dependency for HTTP requests
+- [ ] Implement webhook URL validation
+- [ ] Create webhook configuration storage
+- [ ] Add multiple webhook support
+- [ ] Implement webhook enable/disable toggle
+
+### 10.2 Template Engine
+- [ ] Add handlebars dependency to Cargo.toml
+- [ ] Create services/template_engine.rs
+- [ ] Implement variable substitution system
+- [ ] Support {{title}}, {{series}}, {{episode}}, etc.
+- [ ] Implement Discord embed builder
+- [ ] Create default template presets
+- [ ] Add template preview functionality
+- [ ] Implement template import/export
+
+### 10.3 Webhook Triggers
+- [ ] Implement "download started" trigger
+- [ ] Implement "download completed" trigger
+- [ ] Implement "download failed" trigger
+- [ ] Implement "scheduled download reminder" trigger
+- [ ] Implement "queue completed" trigger
+- [ ] Implement "CDM status change" trigger
+- [ ] Implement "application errors" trigger
+- [ ] Create trigger configuration UI
+
+### 10.4 Webhook Delivery
+- [ ] Create server/webhook_handler.rs
+- [ ] Implement async webhook sending
+- [ ] Add retry logic for failed deliveries
+- [ ] Implement delivery history logging
+- [ ] Add rate limiting to prevent spam
+- [ ] Create webhook test functionality
+- [ ] Add error notifications for webhook failures
+
+
+## PHASE 11: DOWNLOAD SCHEDULER
+# ==============================
+
+### 11.1 Scheduler Setup
+- [ ] Add tokio-cron-scheduler dependency to Cargo.toml
+- [ ] Create server/scheduler.rs
+- [ ] Initialize cron scheduler in server
+- [ ] Create schedule persistence layer
+- [ ] Implement schedule validation
+
+### 11.2 Schedule Management
+- [ ] Implement one-time scheduled downloads
+- [ ] Implement recurring schedules (daily, weekly)
+- [ ] Implement custom cron expressions
+- [ ] Add schedule conflict detection
+- [ ] Implement schedule priority system
+- [ ] Add bandwidth scheduling support
+
+### 11.3 Schedule Execution
+- [ ] Implement schedule trigger system
+- [ ] Connect scheduler to download manager
+- [ ] Add pre-download validation
+- [ ] Implement automatic retry on failure
+- [ ] Add schedule completion notifications
+- [ ] Create schedule history logging
+
+### 11.4 Schedule UI Integration
+- [ ] Connect UI to schedule API
+- [ ] Add real-time schedule updates
+- [ ] Implement countdown timers
+- [ ] Add schedule status indicators
+- [ ] Create schedule edit modal
+- [ ] Add schedule cancellation functionality
+
+
+## PHASE 12: DRM STATUS CHECKER
+# ==============================
+
+### 12.1 CDM Validation
+- [ ] Create services/drm_validator.rs
+- [ ] Implement L3 CDM file presence check
+- [ ] Implement CDM file integrity validation
+- [ ] Add CDM version detection
+- [ ] Implement expiration status check
+- [ ] Create setup instruction generator
+
+### 12.2 Decryption Tool Validation
+- [ ] Check for mp4decrypt binary
+- [ ] Validate decryption tool paths
+- [ ] Test decryption capability
+- [ ] Display supported DRM types
+- [ ] Add dependency installation guides
+
+### 12.3 DRM Status UI
+- [ ] Create components/drm_status.rs
+- [ ] Add status dashboard widget
+- [ ] Implement traffic light indicators (green/yellow/red)
+- [ ] Add detailed status breakdown
+- [ ] Create setup wizard for first-time config
+- [ ] Add re-validation button
+- [ ] Implement status change notifications
+
+
+## PHASE 13: SERVER LOGIC MIGRATION (OLD → RUST)
+# ===============================================
+
+### 13.1 Service Structure Analysis
+- [ ] Read old/gui/server/index.ts
+- [ ] Read old/gui/server/serviceHandler.ts
+- [ ] Read old/gui/server/websocket.ts
+- [ ] Identify all server endpoints
+- [ ] Document WebSocket message types
+- [ ] Map service provider integrations
+
+### 13.2 Service Provider Modules
+- [ ] Create services/crunchyroll.rs
+- [ ] Create services/hidive.rs
+- [ ] Create services/adn.rs
+- [ ] Implement service authentication logic
+- [ ] Implement search functionality per service
+- [ ] Implement episode list retrieval
+- [ ] Implement stream URL extraction
+
+### 13.3 Download Manager Core
+- [ ] Create server/download_manager.rs
+- [ ] Implement download queue management
+- [ ] Implement concurrent download handling
+- [ ] Add download progress tracking
+- [ ] Implement pause/resume functionality
+- [ ] Add download speed limiting
+- [ ] Implement retry logic for failed downloads
+
+### 13.4 HLS/DASH Download Logic
+- [ ] Read old/modules/hls-download.ts
+- [ ] Create services/hls_downloader.rs
+- [ ] Implement M3U8 parsing
+- [ ] Implement segment downloading
+- [ ] Add decryption support (AES-128)
+- [ ] Implement DASH manifest parsing
+
+### 13.5 Video Processing
+- [ ] Read old/modules/module.merger.ts
+- [ ] Create services/video_processor.rs
+- [ ] Implement FFmpeg integration
+- [ ] Add audio/video muxing
+- [ ] Implement subtitle embedding
+- [ ] Add chapter support
+
+### 13.6 Subtitle Handling
+- [ ] Read old/modules/module.vtt2ass.ts
+- [ ] Create services/subtitle_converter.rs
+- [ ] Implement VTT parsing
+- [ ] Implement VTT to ASS conversion
+- [ ] Add font embedding support
+- [ ] Implement subtitle styling
+
+### 13.7 Filename Generation
+- [ ] Read old/modules/module.filename.ts
+- [ ] Create services/filename_generator.rs
+- [ ] Implement template-based naming
+- [ ] Add sanitization for file systems
+- [ ] Support metadata variables
+- [ ] Add collision detection
+
+### 13.8 Archive & History
+- [ ] Read old/modules/module.downloadArchive.ts
+- [ ] Create services/download_archive.rs
+- [ ] Implement download history tracking
+- [ ] Add duplicate detection
+- [ ] Create archive cleanup functionality
+
+
+## PHASE 14: WEBSOCKET / REAL-TIME UPDATES
+# =========================================
+
+### 14.1 WebSocket Setup
+- [ ] Configure WebSocket support in Dioxus
+- [ ] Create server/websocket.rs
+- [ ] Implement WebSocket connection handling
+- [ ] Add connection heartbeat/keepalive
+
+### 14.2 Real-time Events
+- [ ] Implement download progress updates
+- [ ] Add queue status change notifications
+- [ ] Implement schedule execution notifications
+- [ ] Add authentication status updates
+- [ ] Create error notification system
+
+### 14.3 Client Integration
+- [ ] Create hooks/use_websocket.rs
+- [ ] Connect UI to WebSocket events
+- [ ] Implement automatic reconnection
+- [ ] Add offline state handling
+
+
+## PHASE 15: TESTING & VALIDATION
+# ================================
+
+### 15.1 Unit Tests
+- [ ] Write tests for data models
+- [ ] Write tests for service functions
+- [ ] Write tests for template engine
+- [ ] Write tests for filename generator
+- [ ] Write tests for DRM validator
+
+### 15.2 Integration Tests
+- [ ] Test server functions end-to-end
+- [ ] Test download workflow
+- [ ] Test schedule execution
+- [ ] Test webhook delivery
+- [ ] Test authentication flow
+
+### 15.3 UI Testing
+- [ ] Test responsive breakpoints
+- [ ] Test theme switching
+- [ ] Test language switching
+- [ ] Test navigation
+- [ ] Test form validation
+
+### 15.4 Performance Testing
+- [ ] Test initial page load time (<2s)
+- [ ] Test theme switching speed (<100ms)
+- [ ] Test language switching speed (<200ms)
+- [ ] Test concurrent downloads
+- [ ] Profile memory usage
+
+
+## PHASE 16: DOCUMENTATION & POLISH
+# ==================================
+
+### 16.1 Code Documentation
+- [ ] Add doc comments to public APIs
+- [ ] Document server functions
+- [ ] Document custom hooks
+- [ ] Create README.md
+- [ ] Write setup guide
+- [ ] Create troubleshooting guide
+
+### 16.2 Accessibility
+- [ ] Implement keyboard navigation
+- [ ] Add ARIA labels
+- [ ] Test with screen readers
+- [ ] Verify color contrast ratios
+- [ ] Add focus indicators
+
+### 16.3 Error Handling
+- [ ] Implement comprehensive error types
+- [ ] Add user-friendly error messages
+- [ ] Create error boundary components
+- [ ] Add logging for debugging
+- [ ] Implement crash reporting
+
+### 16.4 Final Polish
+- [ ] Add loading states for async operations
+- [ ] Implement optimistic UI updates
+- [ ] Add animations and transitions
+- [ ] Create favicon and app icons
+- [ ] Test on different browsers
+- [ ] Create build and deployment scripts
+
+
+## PHASE 17: DEPLOYMENT PREPARATION
+# ==================================
+
+- [ ] Configure production build settings
+- [ ] Optimize bundle size
+- [ ] Set up environment variables
+- [ ] Create Docker configuration (optional)
+- [ ] Write deployment documentation
+- [ ] Test production build locally
+- [ ] Create release checklist

@@ -1,0 +1,34 @@
+# English translations
+app:
+  title: "Multi Downloader NX"
+  
+nav:
+  home: "Home"
+  downloads: "Downloads"
+  scheduled: "Scheduled"
+  settings: "Settings"
+  
+buttons:
+  add: "Add"
+  cancel: "Cancel"
+  save: "Save"
+  delete: "Delete"
+  edit: "Edit"
+  start: "Start"
+  pause: "Pause"
+  resume: "Resume"
+  
+downloads:
+  title: "Downloads"
+  status:
+    pending: "Pending"
+    downloading: "Downloading"
+    completed: "Completed"
+    failed: "Failed"
+    paused: "Paused"
+  
+settings:
+  title: "Settings"
+  theme: "Theme"
+  language: "Language"
+  download_path: "Download Path"

@@ -46,3 +46,20 @@ widevine/*
 playready/*
 !playready/.gitkeep
 /target
+
+# Dioxus build artifacts
+/dist
+/.dioxus
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Local config
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/

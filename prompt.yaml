@@ -1,0 +1,385 @@
+project:
+  name: "multi-downloader-nx"
+  description: "Complete rebuild of the multi-downloader library as a Dioxus 0.7.1 fullstack application"
+  framework: "Dioxus 0.7.1"
+  architecture: "Fullstack (SSR + Client-side hydration)"
+
+migration:
+  source:
+    framework: "React"
+    type: "React server application"
+  target:
+    framework: "Dioxus 0.7.1"
+    type: "Dioxus fullstack application"
+    language: "Rust"
+  
+  guidelines:
+    - "Convert all React components to Dioxus components"
+    - "Migrate React hooks to Dioxus hooks (use_signal, use_effect, use_resource, etc.)"
+    - "Replace React server-side logic with Dioxus server functions"
+    - "Maintain existing GUI layout and functionality as baseline"
+    - "Convert all TypeScript/JavaScript logic to idiomatic Rust"
+
+ui:
+  baseline: "Use current GUI design as reference"
+  
+  styling:
+    framework: "Tailwind CSS"
+    setup:
+      - "Configure Tailwind CSS with Dioxus"
+      - "Use Tailwind CLI or PostCSS for processing"
+      - "Include all necessary Tailwind plugins"
+    guidelines:
+      - "Use utility-first approach"
+      - "Create reusable component classes where appropriate"
+      - "Maintain consistent spacing and typography scale"
+  
+  responsiveness:
+    breakpoints:
+      sm: "640px"
+      md: "768px"
+      lg: "1024px"
+      xl: "1280px"
+      2xl: "1536px"
+    requirements:
+      - "Mobile-first design approach"
+      - "Responsive navigation (hamburger menu on mobile)"
+      - "Adaptive layouts for download queue and library views"
+      - "Touch-friendly controls for mobile devices"
+      - "Collapsible sidebars on smaller screens"
+
+  theme_manager:
+    features:
+      - "Light and dark mode support"
+      - "System preference detection (prefers-color-scheme)"
+      - "Custom theme creation and saving"
+      - "Theme persistence in local storage/database"
+      - "Real-time theme switching without page reload"
+    customizable_properties:
+      - "Primary, secondary, and accent colors"
+      - "Background and surface colors"
+      - "Text colors (primary, secondary, muted)"
+      - "Border colors and radius values"
+      - "Shadow styles"
+    prebuilt_themes:
+      - "Light (default)"
+      - "Dark"
+      - "OLED Black"
+      - "Solarized Light"
+      - "Solarized Dark"
+      - "Dracula"
+
+internationalization:
+  crate: "rust-i18n"
+  configuration:
+    fallback_locale: "en"
+    load_path: "./locales"
+  
+  languages:
+    - code: "en"
+      name: "English"
+      native_name: "English"
+      
+    - code: "de"
+      name: "German"
+      native_name: "Deutsch"
+      
+    - code: "es"
+      name: "Spanish"
+      native_name: "Español"
+      
+    - code: "fr"
+      name: "French"
+      native_name: "Français"
+      
+    - code: "it"
+      name: "Italian"
+      native_name: "Italiano"
+      
+    - code: "pt"
+      name: "Portuguese"
+      native_name: "Português"
+      
+    - code: "pt-BR"
+      name: "Brazilian Portuguese"
+      native_name: "Português (Brasil)"
+      
+    - code: "ru"
+      name: "Russian"
+      native_name: "Русский"
+      
+    - code: "zh-CN"
+      name: "Chinese (Simplified)"
+      native_name: "简体中文"
+      
+    - code: "zh-TW"
+      name: "Chinese (Traditional)"
+      native_name: "繁體中文"
+      
+    - code: "ja"
+      name: "Japanese"
+      native_name: "日本語"
+      
+    - code: "ko"
+      name: "Korean"
+      native_name: "한국어"
+      
+    - code: "pl"
+      name: "Polish"
+      native_name: "Polski"
+      
+    - code: "nl"
+      name: "Dutch"
+      native_name: "Nederlands"
+      
+    - code: "tr"
+      name: "Turkish"
+      native_name: "Türkçe"
+      
+    - code: "ar"
+      name: "Arabic"
+      native_name: "العربية"
+      rtl: true
+  
+  features:
+    - "Browser language auto-detection"
+    - "Language preference persistence"
+    - "Dynamic language switching"
+    - "RTL support for Arabic and similar languages"
+    - "Pluralization support"
+    - "Date and number formatting per locale"
+
+features:
+  scheduled_downloads:
+    description: "Plan and schedule downloads for future execution"
+    functionality:
+      - "Create scheduled download tasks"
+      - "Set specific date and time for download start"
+      - "Recurring schedule support (daily, weekly, custom)"
+      - "Queue priority management"
+      - "Bandwidth scheduling (download during off-peak hours)"
+      - "Pause/resume scheduled tasks"
+      - "Edit scheduled downloads before execution"
+      - "Cancel scheduled downloads"
+    ui_elements:
+      - "Calendar/date picker for scheduling"
+      - "Time picker with timezone support"
+      - "Scheduled downloads list view"
+      - "Status indicators (pending, in-progress, completed, failed)"
+      - "Countdown timer for next scheduled download"
+      - "Drag-and-drop queue reordering"
+    storage:
+      - "Persist schedules in database"
+      - "Survive application restarts"
+      - "Background task execution"
+
+  drm_status:
+    description: "Display L3 CDM validity and decryption setup status"
+    l3_cdm_validation:
+      - "Check if L3 CDM files are present"
+      - "Validate CDM file integrity"
+      - "Display CDM version information"
+      - "Show expiration status if applicable"
+      - "Provide setup instructions if invalid/missing"
+    decryption_status:
+      - "Check decryption dependencies (mp4decrypt, etc.)"
+      - "Verify decryption tool paths are configured"
+      - "Test decryption capability"
+      - "Display supported DRM types"
+    ui_elements:
+      - "Status dashboard/widget"
+      - "Green/yellow/red status indicators"
+      - "Detailed status breakdown"
+      - "Quick-fix suggestions for issues"
+      - "Setup wizard for first-time configuration"
+      - "Re-validation button"
+    notifications:
+      - "Alert when CDM becomes invalid"
+      - "Warn before CDM expiration"
+      - "Notify on decryption failures"
+
+  discord_webhook:
+    description: "Discord webhook integration with customizable message templates"
+    configuration:
+      - "Add multiple webhook URLs"
+      - "Name/label webhooks for identification"
+      - "Test webhook connectivity"
+      - "Enable/disable individual webhooks"
+      - "Set webhook-specific triggers"
+    triggers:
+      - "Download started"
+      - "Download completed"
+      - "Download failed"
+      - "Scheduled download reminder"
+      - "Queue completed"
+      - "CDM status change"
+      - "Application errors"
+    message_templating:
+      supported_variables:
+        - "{{title}} - Content title"
+        - "{{series}} - Series name"
+        - "{{episode}} - Episode number"
+        - "{{season}} - Season number"
+        - "{{quality}} - Video quality"
+        - "{{size}} - File size"
+        - "{{duration}} - Download duration"
+        - "{{speed}} - Average download speed"
+        - "{{timestamp}} - Completion timestamp"
+        - "{{status}} - Download status"
+        - "{{error}} - Error message (if failed)"
+        - "{{thumbnail}} - Content thumbnail URL"
+        - "{{source}} - Download source/service"
+      features:
+        - "Rich embed support"
+        - "Custom embed colors"
+        - "Thumbnail/image attachments"
+        - "Custom author and footer fields"
+        - "Template presets (minimal, detailed, custom)"
+        - "Template preview before saving"
+        - "Import/export templates"
+    default_templates:
+      download_complete: |
+        {
+          "embeds": [{
+            "title": "✅ Download Complete",
+            "description": "**{{title}}**",
+            "color": 5763719,
+            "fields": [
+              {"name": "Quality", "value": "{{quality}}", "inline": true},
+              {"name": "Size", "value": "{{size}}", "inline": true},
+              {"name": "Duration", "value": "{{duration}}", "inline": true}
+            ],
+            "thumbnail": {"url": "{{thumbnail}}"},
+            "timestamp": "{{timestamp}}"
+          }]
+        }
+      download_failed: |
+        {
+          "embeds": [{
+            "title": "❌ Download Failed",
+            "description": "**{{title}}**\n\nError: {{error}}",
+            "color": 15548997,
+            "timestamp": "{{timestamp}}"
+          }]
+        }
+
+project_structure:
+  recommended_layout:
+    - "src/"
+    - "  main.rs                 # Application entry point"
+    - "  lib.rs                  # Shared library code"
+    - "  app.rs                  # Root Dioxus component"
+    - "  router.rs               # Application routing"
+    - "  components/             # Reusable UI components"
+    - "    mod.rs"
+    - "    navigation.rs"
+    - "    download_card.rs"
+    - "    status_indicator.rs"
+    - "    theme_switcher.rs"
+    - "    language_selector.rs"
+    - "    schedule_picker.rs"
+    - "  pages/                  # Page components"
+    - "    mod.rs"
+    - "    home.rs"
+    - "    downloads.rs"
+    - "    scheduled.rs"
+    - "    settings.rs"
+    - "    webhooks.rs"
+    - "  server/                 # Server-side logic"
+    - "    mod.rs"
+    - "    api.rs"
+    - "    download_manager.rs"
+    - "    scheduler.rs"
+    - "    webhook_handler.rs"
+    - "  services/               # Business logic"
+    - "    mod.rs"
+    - "    drm_validator.rs"
+    - "    discord_client.rs"
+    - "    template_engine.rs"
+    - "  models/                 # Data structures"
+    - "    mod.rs"
+    - "    download.rs"
+    - "    schedule.rs"
+    - "    webhook.rs"
+    - "    settings.rs"
+    - "  state/                  # Application state management"
+    - "    mod.rs"
+    - "    app_state.rs"
+    - "    theme_state.rs"
+    - "  hooks/                  # Custom Dioxus hooks"
+    - "    mod.rs"
+    - "    use_theme.rs"
+    - "    use_i18n.rs"
+    - "    use_webhook.rs"
+    - "locales/                  # i18n translation files"
+    - "  en.yml"
+    - "  de.yml"
+    - "  es.yml"
+    - "  fr.yml"
+    - "  ... (other languages)"
+    - "assets/                   # Static assets"
+    - "  styles/"
+    - "    tailwind.css"
+    - "  images/"
+    - "Cargo.toml"
+    - "tailwind.config.js"
+    - "Dioxus.toml"
+
+dependencies:
+  core:
+    - "dioxus = { version = \"0.7.1\", features = [\"fullstack\", \"router\"] }"
+    - "dioxus-ssr = \"0.7.1\""
+    - "rust-i18n = \"3\""
+    - "tokio = { version = \"1\", features = [\"full\"] }"
+    - "serde = { version = \"1\", features = [\"derive\"] }"
+    - "serde_json = \"1\""
+    
+  http_client:
+    - "reqwest = { version = \"0.12\", features = [\"json\"] }"
+    
+  database:
+    - "sqlx = { version = \"0.8\", features = [\"runtime-tokio\", \"sqlite\"] }"
+    # or
+    - "sled = \"0.34\"  # For embedded database"
+    
+  scheduling:
+    - "tokio-cron-scheduler = \"0.13\""
+    - "chrono = { version = \"0.4\", features = [\"serde\"] }"
+    
+  templating:
+    - "handlebars = \"6\"  # For Discord message templating"
+    - "tera = \"1\"        # Alternative templating engine"
+    
+  utilities:
+    - "thiserror = \"2\""
+    - "tracing = \"0.1\""
+    - "tracing-subscriber = \"0.3\""
+    - "uuid = { version = \"1\", features = [\"v4\", \"serde\"] }"
+
+acceptance_criteria:
+  functional:
+    - "All existing download functionality preserved"
+    - "Scheduled downloads execute reliably"
+    - "DRM status accurately reflects system state"
+    - "Discord webhooks deliver messages successfully"
+    - "All languages display correct translations"
+    - "Theme changes persist across sessions"
+    
+  performance:
+    - "Initial page load under 2 seconds"
+    - "Theme switching under 100ms"
+    - "Language switching under 200ms"
+    - "Responsive UI at all breakpoints"
+    
+  accessibility:
+    - "Keyboard navigation support"
+    - "Screen reader compatible"
+    - "Sufficient color contrast ratios"
+    - "Focus indicators visible"
+    
+  code_quality:
+    - "Idiomatic Rust code"
+    - "Comprehensive error handling"
+    - "Unit tests for business logic"
+    - "Integration tests for server functions"
+    - "Documentation for public APIs"

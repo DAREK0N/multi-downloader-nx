@@ -2,17 +2,16 @@
 //! enum will render one of these components.
 //!
 //!
-//! The [`Home`] and [`Blog`] components will be rendered when the current route is [`Route::Home`] or [`Route::Blog`] respectively.
+//! The [`Home`] component will be rendered when the current route is [`Route::Home`].
 //!
-//!
-//! The [`Navbar`] component will be rendered on all pages of our app since every page is under the layout. The layout defines
-//! a common wrapper around all child routes.
+//! Note: Blog and Navbar components are commented out during migration to new routing system.
 
 mod home;
 pub use home::Home;
 
-mod blog;
-pub use blog::Blog;
+// Temporarily disabled during migration
+// mod blog;
+// pub use blog::Blog;
 
-mod navbar;
-pub use navbar::Navbar;
+// mod navbar;
+// pub use navbar::Navbar;

@@ -7,3 +7,35 @@ pub use hero::Hero;
 
 mod echo;
 pub use echo::Echo;
+
+mod navigation;
+pub use navigation::NavBar;
+
+mod theme_switcher;
+pub use theme_switcher::ThemeSwitcher;
+
+// Reusable UI components
+mod button;
+pub use button::{Button, ButtonSize, ButtonVariant, IconButton};
+
+mod input;
+pub use input::{Input, TextArea};
+
+mod card;
+pub use card::{Card, CardBody, CardFooter, CardHeader};
+
+mod modal;
+pub use modal::{Modal, ModalFooter};
+
+mod progress_bar;
+pub use progress_bar::{CircularProgress, ProgressBar};
+
+mod status_indicator;
+pub use status_indicator::{DownloadStatusBadge, StatusIndicator, StatusVariant};
+
+// Download-specific components
+mod download_card;
+pub use download_card::DownloadCard;
+
+mod download_list;
+pub use download_list::{DownloadFilter, DownloadList};
