@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 use crate::components::{Button, ButtonVariant, Card, ProgressBar};
-use crate::models::{QueueItem, Priority};
+use crate::models::QueueItem;
 
 #[component]
 pub fn QueuePage() -> Element {
@@ -29,7 +29,7 @@ pub fn QueuePage() -> Element {
                                     p { class: "font-semibold", "Download {item.download_id}" }
                                     p { class: "text-sm text-text-secondary", "Priority: {item.priority.value()}" }
                                 }
-                                ProgressBar { progress: 0.0 }
+                                ProgressBar { value: 0.0 }
                             }
                         }
                     }

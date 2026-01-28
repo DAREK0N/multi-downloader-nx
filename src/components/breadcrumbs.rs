@@ -21,6 +21,10 @@ pub fn Breadcrumbs() -> Element {
             Crumb { label: "Home".into(), to: Route::Home {} },
             Crumb { label: "Scheduled".into(), to: Route::Scheduled {} },
         ],
+        Route::Queue {} => vec![
+            Crumb { label: "Home".into(), to: Route::Home {} },
+            Crumb { label: "Queue".into(), to: Route::Queue {} },
+        ],
         Route::Settings {} => vec![
             Crumb { label: "Home".into(), to: Route::Home {} },
             Crumb { label: "Settings".into(), to: Route::Settings {} },

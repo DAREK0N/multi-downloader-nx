@@ -1,7 +1,6 @@
 use dioxus::prelude::*;
 use crate::models::ServiceType;
 use crate::components::{Button, ButtonVariant, IconButton};
-use crate::state::AuthState;
 
 #[derive(Props, PartialEq, Clone)]
 pub struct AuthButtonProps {
@@ -34,7 +33,7 @@ pub fn AuthButton(props: AuthButtonProps) -> Element {
                 variant: color,
                 disabled: props.loading,
                 onclick: move |_| props.on_click.call(()),
-                if props.loading { "Connecting..." } else { format!("Connect {label}") }
+                if props.loading { "Connecting..." } else { format!("Connect {}", label) }
             }
             if props.is_authenticated {
                 IconButton {
