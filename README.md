@@ -56,4 +56,14 @@ To run for a different platform, use the `--platform platform` flag. E.g.
 dx serve --platform desktop
 ```
 
+### Faster installs of `dioxus-cli`
+
+Compiling the CLI from source can take a while. Use the prebuilt installer to grab a binary quickly:
+
+```bash
+curl -sSL https://dioxus.dev/install.sh | bash
+dx --version
+```
+
+If you prefer manual downloads, grab the matching asset for your platform from the Dioxus releases and put the `dx` binary on your `PATH`.
 
