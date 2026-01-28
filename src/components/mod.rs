@@ -43,6 +43,9 @@ pub use multi_select::{MultiSelect, SelectOption};
 mod context_menu;
 pub use context_menu::{ContextMenu, MenuItem};
 
+mod auth_button;
+pub use auth_button::AuthButton;
+
 // Download-specific components
 mod download_card;
 pub use download_card::DownloadCard;
