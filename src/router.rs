@@ -1,5 +1,12 @@
 use dioxus::prelude::*;
-use crate::pages::{Home, downloads::Downloads, scheduled::Scheduled, settings::Settings, webhooks::Webhooks};
+use crate::pages::{
+    Home,
+    downloads::Downloads,
+    scheduled::Scheduled,
+    settings::Settings,
+    webhooks::Webhooks,
+    queue::QueuePage,
+};
 
 /// Application routes
 #[derive(Routable, Clone, PartialEq)]
@@ -20,6 +27,9 @@ pub enum Route {
         
         #[route("/webhooks")]
         Webhooks {},
+        
+        #[route("/queue")]
+        Queue {},
 }
 
 /// Main layout wrapper for all pages

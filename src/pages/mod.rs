@@ -3,6 +3,7 @@
 // Re-export Home from views for compatibility
 pub use crate::views::Home;
 
+pub mod queue;
 // Additional pages - inline implementations for Phase 1
 pub mod downloads {
     use dioxus::prelude::*;
