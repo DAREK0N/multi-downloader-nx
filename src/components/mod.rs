@@ -10,9 +10,13 @@ pub use echo::Echo;
 
 mod navigation;
 pub use navigation::NavBar;
+mod breadcrumbs;
+pub use breadcrumbs::Breadcrumbs;
 
 mod theme_switcher;
 pub use theme_switcher::ThemeSwitcher;
+mod theme_preview;
+pub use theme_preview::ThemePreview;
 
 // Reusable UI components
 mod button;
@@ -32,6 +36,15 @@ pub use progress_bar::{CircularProgress, ProgressBar};
 
 mod status_indicator;
 pub use status_indicator::{DownloadStatusBadge, StatusIndicator, StatusVariant};
+
+mod multi_select;
+pub use multi_select::{MultiSelect, SelectOption};
+
+mod context_menu;
+pub use context_menu::{ContextMenu, MenuItem};
+
+mod auth_button;
+pub use auth_button::AuthButton;
 
 // Download-specific components
 mod download_card;

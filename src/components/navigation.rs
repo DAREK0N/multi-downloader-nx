@@ -18,17 +18,17 @@ pub fn NavBar() -> Element {
                         }
                     }
 
-                    // Desktop Navigation
-                    div { class: "hidden md:flex md:items-center md:space-x-4",
-                        NavLink { to: Route::Home {}, "Home" }
-                        NavLink { to: Route::Downloads {}, "Downloads" }
-                        NavLink { to: Route::Scheduled {}, "Scheduled" }
-                        NavLink { to: Route::Webhooks {}, "Webhooks" }
-                        NavLink { to: Route::Settings {}, "Settings" }
+                // Desktop Navigation
+                div { class: "hidden md:flex md:items-center md:space-x-4",
+                    NavLink { to: Route::Home {}, "Home" }
+                    NavLink { to: Route::Downloads {}, "Downloads" }
+                    NavLink { to: Route::Scheduled {}, "Scheduled" }
+                    NavLink { to: Route::Webhooks {}, "Webhooks" }
+                    NavLink { to: Route::Settings {}, "Settings" }
 
-                        // Theme switcher
-                        crate::components::ThemeSwitcher {}
-                    }
+                    // Theme switcher
+                    crate::components::ThemeSwitcher {}
+                }
 
                     // Mobile menu button
                     div { class: "md:hidden",

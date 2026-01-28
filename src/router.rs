@@ -1,5 +1,12 @@
 use dioxus::prelude::*;
-use crate::pages::{Home, downloads::Downloads, scheduled::Scheduled, settings::Settings, webhooks::Webhooks};
+use crate::pages::{
+    Home,
+    downloads::Downloads,
+    scheduled::Scheduled,
+    settings::Settings,
+    webhooks::Webhooks,
+    queue::QueuePage,
+};
 
 /// Application routes
 #[derive(Routable, Clone, PartialEq)]
@@ -20,6 +27,9 @@ pub enum Route {
         
         #[route("/webhooks")]
         Webhooks {},
+        
+        #[route("/queue")]
+        Queue {},
 }
 
 /// Main layout wrapper for all pages
@@ -29,7 +39,10 @@ fn MainLayout() -> Element {
         div { class: "min-h-screen bg-background text-text-primary",
             crate::components::NavBar {}
 
-            main { class: "container mx-auto px-4 py-8", Outlet::<Route> {} }
+            main { class: "container mx-auto px-4 py-8 space-y-4",
+                crate::components::Breadcrumbs {}
+                Outlet::<Route> {}
+            }
         }
     }
 }

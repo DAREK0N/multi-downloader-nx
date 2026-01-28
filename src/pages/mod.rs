@@ -3,6 +3,7 @@
 // Re-export Home from views for compatibility
 pub use crate::views::Home;
 
+pub mod queue;
 // Additional pages - inline implementations for Phase 1
 pub mod downloads {
     use dioxus::prelude::*;
@@ -176,7 +177,7 @@ pub mod scheduled {
                                     div { class: "flex items-center space-x-2",
                                         Button {
                                             variant: ButtonVariant::Ghost,
-                                            onclick: move |_| {} // TODO: Toggle enabled,
+                                            onclick: move |_| {}, // TODO: Toggle enabled
                                             if schedule.enabled {
                                                 "Pause"
                                             } else {
@@ -185,7 +186,7 @@ pub mod scheduled {
                                         }
                                         Button {
                                             variant: ButtonVariant::Danger,
-                                            onclick: move |_| {} // TODO: Delete schedule,
+                                            onclick: move |_| {}, // TODO: Delete schedule
                                             "Delete"
                                         }
                                     }
@@ -317,11 +318,11 @@ pub mod settings {
                                 label: "Max Retries".to_string(),
                                 placeholder: "3".to_string(),
                             }
-                            Button {
-                                variant: ButtonVariant::Primary,
-                                onclick: move |_| {} // TODO: Save download settings,
-                                "Save Download Settings"
-                            }
+                                    Button {
+                                        variant: ButtonVariant::Primary,
+                                        onclick: move |_| {}, // TODO: Save download settings
+                                        "Save Download Settings"
+                                    }
                         }
                     }
                 }
@@ -356,7 +357,7 @@ pub mod settings {
                                     placeholder: "password".to_string(),
                                 }
                                 div { class: "flex space-x-2",
-                                    Button { onclick: move |_| {} // TODO: Login to Crunchyroll, "Connect" }
+                                    Button { onclick: move |_| {}, "Connect" } // TODO: Login to Crunchyroll
                                     if auth_state().is_authenticated(ServiceType::Crunchyroll) {
                                         Button {
                                             variant: ButtonVariant::Danger,
@@ -392,7 +393,7 @@ pub mod settings {
                                     placeholder: "password".to_string(),
                                 }
                                 div { class: "flex space-x-2",
-                                    Button { onclick: move |_| {} // TODO: Login to HIDIVE, "Connect" }
+                                    Button { onclick: move |_| {}, "Connect" } // TODO: Login to HIDIVE
                                     if auth_state().is_authenticated(ServiceType::Hidive) {
                                         Button {
                                             variant: ButtonVariant::Danger,
@@ -428,7 +429,7 @@ pub mod settings {
                                     placeholder: "password".to_string(),
                                 }
                                 div { class: "flex space-x-2",
-                                    Button { onclick: move |_| {} // TODO: Login to ADN, "Connect" }
+                                    Button { onclick: move |_| {}, "Connect" } // TODO: Login to ADN
                                     if auth_state().is_authenticated(ServiceType::Adn) {
                                         Button {
                                             variant: ButtonVariant::Danger,
