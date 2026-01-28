@@ -1,0 +1,46 @@
+Migration Phases (Dioxus 0.7.3) — baseline from /old/gui, Tailwind styling
+
+Phase 0 — Inputs (today)
+- [x] Read AGENTS.md (Dioxus 0.7 API updates, no cx/Scope/use_state)
+- [x] Read prompt.yaml content from issue statement (migration goals, Tailwind, i18n, scheduling, webhook, server)
+
+Phase 1 — GUI/layout/routes/theme (baseline: /old/gui React)
+- [ ] Inventory /old/gui React screens, components, routes; map 1:1 to Dioxus components/pages
+- [ ] Define Dioxus router enum & layouts mirroring old navigation (home, downloads, scheduled, settings, webhooks)
+- [ ] Set up Tailwind pipeline for Dioxus (config + stylesheet hookup) using existing styles as reference
+- [ ] Recreate shared layout shell (header/sidebar, responsive hamburger, collapsible sidebar)
+- [ ] Port key views: download queue, library list, DRM status widget, scheduled downloads view, settings (themes, language, webhooks)
+- [ ] Implement theme manager (light/dark/OLED/Solarized/Dracula) with signal-based toggle and persistence hook
+- [ ] Ensure responsive breakpoints (sm–2xl), touch-friendly controls, focus/ARIA basics
+
+Phase 2 — State + basic server foundations
+- [ ] Establish fullstack entrypoints (server + web) with hydration
+- [ ] Define app state signals/contexts (user prefs, theme, locale, queue, schedules, DRM status, webhooks)
+- [ ] Set up persistence layer placeholder (SQLx or sled) for settings/schedules/queue
+- [ ] Scaffold server functions for CRUD on downloads, schedules, themes, webhooks
+
+Phase 3 — Internationalization (rust-i18n)
+- [ ] Add rust-i18n config (fallback en, ./locales) and locale files per prompt languages
+- [ ] Wire language selector component, browser-language detection, persistence, RTL handling for Arabic
+- [ ] Wrap UI strings with i18n macros; add pluralization/date/number formatting helpers
+
+Phase 4 — Discord webhook support
+- [ ] Model webhook configs (multiple URLs, labels, enable/disable, triggers)
+- [ ] Add server endpoints for testing webhooks and sending notifications
+- [ ] Implement template system (handlebars/tera) with preview in UI; include default templates from prompt
+- [ ] Hook triggers: download start/complete/fail, schedule reminder, queue complete, DRM status change, errors
+
+Phase 5 — Scheduler (tokio-cron-scheduler/chrono)
+- [ ] Persist scheduled tasks with recurrence, timezone-aware datetime, bandwidth window
+- [ ] UI: calendar/time picker, list with status indicators, drag/drop reorder, countdown
+- [ ] Server worker: enqueue, pause/resume/cancel/edit, resume after restart, background execution
+
+Phase 6 — Translate /old server logic to Rust/Dioxus
+- [ ] Extract business logic from /old/server (downloads, DRM validation, webhook handling)
+- [ ] Reimplement in Rust modules (services/download_manager.rs, drm_validator.rs, webhook_handler.rs, scheduler.rs)
+- [ ] Expose via Dioxus server functions/api; add error handling and tracing
+
+Notes
+- Target Dioxus 0.7.3 with fullstack + router; maintain old GUI behavior while modernizing
+- Use utility-first Tailwind; keep spacing/typography consistent with baseline
+- Keep accessibility (keyboard, contrast, focus) in scope during GUI port
