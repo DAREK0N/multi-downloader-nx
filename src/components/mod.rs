@@ -37,6 +37,12 @@ pub use progress_bar::{CircularProgress, ProgressBar};
 mod status_indicator;
 pub use status_indicator::{DownloadStatusBadge, StatusIndicator, StatusVariant};
 
+mod multi_select;
+pub use multi_select::{MultiSelect, SelectOption};
+
+mod context_menu;
+pub use context_menu::{ContextMenu, MenuItem};
+
 // Download-specific components
 mod download_card;
 pub use download_card::DownloadCard;
