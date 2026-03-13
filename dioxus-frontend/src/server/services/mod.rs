@@ -46,14 +46,6 @@ impl ServiceHandler {
         }
     }
 
-    fn get_handler(&self) -> Box<dyn ServiceActions + Send + Sync> {
-        match self.service {
-            ServiceType::Crunchyroll => Box::new(crunchyroll::CrunchyrollService),
-            ServiceType::Hidive => Box::new(hidive::HidiveService),
-            ServiceType::Adn => Box::new(adn::AdnService),
-        }
-    }
-
     pub async fn auth(&self, data: &AuthData) -> ApiResponse<String> {
         match self.service {
             ServiceType::Crunchyroll => crunchyroll::CrunchyrollService.auth(data).await,

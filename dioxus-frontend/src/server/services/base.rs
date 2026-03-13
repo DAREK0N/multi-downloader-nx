@@ -90,6 +90,7 @@ impl QueueManager {
         enabled: bool,
     ) -> ApiResponse<()> {
         let key = Self::service_key(service);
+        let key_for_spawn = key.clone();
         let mut states = self.states.write().await;
         let state = states.entry(key).or_default();
         state.queue_enabled = enabled;
@@ -102,10 +103,7 @@ impl QueueManager {
             state.is_downloading = true;
 
             // Simulate starting download in background
-            let service_clone = service.clone();
-            tokio::spawn(async move {
-                simulate_download(&service_clone).await;
-            });
+            tokio::spawn(simulate_download(key_for_spawn));
         }
 
         ApiResponse::ok(())
@@ -139,58 +137,58 @@ impl QueueManager {
 /// Simulate a download process for demonstration purposes.
 /// In a full implementation, this would call the actual download logic
 /// from the service handlers (HLS download, DRM decryption, video merging, etc.)
-async fn simulate_download(service: &ServiceType) {
-    let key = QueueManager::service_key(service);
+fn simulate_download(
+    service_key: String,
+) -> std::pin::Pin<Box<dyn std::future::Future<Output = ()> + Send>> {
+    Box::pin(async move {
+        // Simulate download phases
+        for i in 0..=100 {
+            tokio::time::sleep(tokio::time::Duration::from_millis(100)).await;
 
-    // Simulate download phases
-    for i in 0..=100 {
-        tokio::time::sleep(tokio::time::Duration::from_millis(100)).await;
-
-        let progress = ExtendedProgress {
-            progress: ProgressData {
-                total: 100,
-                cur: i,
-                percent: i as f64,
-                time: i as f64 * 0.1,
-                download_speed: 2_500_000.0,
-                bytes: i * 250_000,
-            },
-            download_info: DownloadInfo {
-                image: String::new(),
-                parent_title: "Series".to_string(),
-                title: "Episode".to_string(),
-                language: LanguageItem {
-                    code: "jpn".to_string(),
-                    name: "Japanese".to_string(),
+            let progress = ExtendedProgress {
+                progress: ProgressData {
+                    total: 100,
+                    cur: i,
+                    percent: i as f64,
+                    time: i as f64 * 0.1,
+                    download_speed: 2_500_000.0,
+                    bytes: i * 250_000,
                 },
-                file_name: "output.mkv".to_string(),
-            },
-        };
+                download_info: DownloadInfo {
+                    image: String::new(),
+                    parent_title: "Series".to_string(),
+                    title: "Episode".to_string(),
+                    language: LanguageItem {
+                        code: "jpn".to_string(),
+                        name: "Japanese".to_string(),
+                    },
+                    file_name: "output.mkv".to_string(),
+                },
+            };
 
+            let mut states = QUEUE_MANAGER.states.write().await;
+            if let Some(state) = states.get_mut(&service_key) {
+                state.progress = Some(progress);
+            }
+        }
+
+        // Finish download
         let mut states = QUEUE_MANAGER.states.write().await;
-        if let Some(state) = states.get_mut(&key) {
-            state.progress = Some(progress);
+        if let Some(state) = states.get_mut(&service_key) {
+            state.is_downloading = false;
+            state.current_item = None;
+            state.progress = None;
+
+            // Process next item if queue is enabled
+            if state.queue_enabled && !state.queue.is_empty() {
+                let item = state.queue.remove(0);
+                state.current_item = Some(item);
+                state.is_downloading = true;
+                let key_clone = service_key.clone();
+                drop(states);
+
+                tokio::spawn(simulate_download(key_clone));
+            }
         }
-    }
-
-    // Finish download
-    let mut states = QUEUE_MANAGER.states.write().await;
-    if let Some(state) = states.get_mut(&key) {
-        state.is_downloading = false;
-        state.current_item = None;
-        state.progress = None;
-
-        // Process next item if queue is enabled
-        if state.queue_enabled && !state.queue.is_empty() {
-            let item = state.queue.remove(0);
-            state.current_item = Some(item);
-            state.is_downloading = true;
-            drop(states);
-
-            let service_clone = service.clone();
-            tokio::spawn(async move {
-                simulate_download(&service_clone).await;
-            });
-        }
-    }
+    })
 }
