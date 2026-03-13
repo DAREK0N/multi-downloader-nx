@@ -45,3 +45,7 @@ widevine/*
 !widevine/.gitkeep
 playready/*
 !playready/.gitkeep
+
+# Rust / Dioxus
+dioxus-frontend/target/
+dioxus-frontend/.dioxus/

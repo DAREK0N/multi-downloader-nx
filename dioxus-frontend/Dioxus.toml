@@ -1,0 +1,15 @@
+[application]
+name = "multi-downloader-nx"
+default_platform = "web"
+
+[application.platforms.web]
+features = ["web"]
+
+[application.platforms.server]
+features = ["server"]
+
+[web.app]
+title = "Multi Downloader NX"
+
+[web.resource]
+style = ["assets/style.css"]
